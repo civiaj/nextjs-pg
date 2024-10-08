@@ -1,11 +1,9 @@
-'use client'
-
-import { Button } from '@/components/ui/button'
-import { useState } from 'react'
+import { PostList } from '@/components/Post/PostList'
 
 export default function Home() {
-    const [isActive, setIsActive] = useState(false)
-    const buttonTitle = isActive ? 'Деактивировать' : 'Активировать'
-
-    return <Button onClick={() => setIsActive((p) => !p)}>{buttonTitle}</Button>
+    return (
+        <>
+            <PostList />
+        </>
+    )
 }
