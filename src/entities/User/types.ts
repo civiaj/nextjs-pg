@@ -1,14 +1,14 @@
 import { TimeStamp } from '@/shared/types'
 
-export type UserRole = 'admin' | 'user'
+export type TUserRole = 'admin' | 'user'
 
-export interface User extends TimeStamp {
+export interface TUser extends TimeStamp {
     id: string
     name: string
     email: string
     password: string
     avatar: string | null
-    role: UserRole
+    role: TUserRole
 }
 
-export type UserMe = Pick<User, 'avatar' | 'email' | 'name' | 'id' | 'role'>
+export type UserMe = Pick<TUser, 'avatar' | 'email' | 'name' | 'id' | 'role'>

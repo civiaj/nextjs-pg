@@ -177,4 +177,6 @@ const VirtualList = ({ listItemsCount, renderFunction, estimateHeight, getItemKe
     )
 }
 
-export default dynamic(() => Promise.resolve(VirtualList), { ssr: false })
+export default dynamic(() => Promise.resolve(VirtualList), {
+    ssr: false
+})

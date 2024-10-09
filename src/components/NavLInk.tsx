@@ -40,9 +40,9 @@ export const NavLink = (props: Props) => {
             <Link
                 draggable='false'
                 className={cn(
-                    'relative flex w-full select-none items-center overflow-hidden rounded-md p-2 text-sm transition-colors hover:bg-border sm:hover:bg-secondary',
+                    'relative flex w-full select-none items-center overflow-hidden rounded-md p-2 text-sm transition-colors hover:bg-background sm:hover:bg-border',
                     {
-                        ['bg-background sm:bg-border']: isActive
+                        ['bg-border sm:bg-secondary']: isActive
                     },
                     additionalClass
                 )}

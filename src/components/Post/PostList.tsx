@@ -1,7 +1,9 @@
 'use client'
 
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
+import { PostFilter } from '@/components/Post/PostFilter'
 import { PostPreview } from '@/components/Post/PostPreview'
+import { Skeleton } from '@/components/Skeleton'
 import VirtualList from '@/components/VirtualList'
 import { getPosts, test } from '@/entities/Post/api'
 import { TPostPreview } from '@/entities/Post/types'
@@ -9,6 +11,7 @@ import { useIntersectionObserver } from '@/lib/hooks'
 
 export const PostList = () => {
     const [isLoading, setIsLoading] = useState(false)
+    const [isInitial, setIsInitial] = useState(true)
     const [isError, setIsError] = useState<string | null>(null)
 
     const [page, setPage] = useState(0)
@@ -45,12 +48,25 @@ export const PostList = () => {
         [posts]
     )
 
+    useEffect(() => {
+        if (isInitial) {
+            onScrollEnd().then(() => {
+                window.scrollTo({ top: 0 })
+                setIsInitial(false)
+            })
+        }
+    }, [onScrollEnd, isInitial])
+
     if (isError) {
         console.log(isError)
     }
 
     return (
         <>
+            <PostFilter />
+
+            {isInitial && <Skeleton skeletonFor='VirtualList' />}
+
             <VirtualList
                 listItemsCount={posts.length}
                 estimateHeight={() => 200}
@@ -60,8 +76,7 @@ export const PostList = () => {
 
             <div
                 ref={observerRef}
-                className='h-1 w-full bg-black'
-            />
+                className='h-10 w-full bg-black'></div>
         </>
     )
 }

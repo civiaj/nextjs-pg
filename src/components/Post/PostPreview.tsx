@@ -1,7 +1,12 @@
-import Image from 'next/image'
+import Link from 'next/link'
 import { Container } from '@/components/box/Container'
+import { PostImage } from '@/components/Post/PostImage'
+import { Reactions } from '@/components/Post/Reactions'
+import { UserInfo } from '@/components/Post/UserInfo'
 import { Text } from '@/components/typography/Text'
 import { TPostPreview } from '@/entities/Post/types'
+import { cn } from '@/lib/utils'
+import { PATH } from '@/shared/const'
 
 type Props = {
     index: number
@@ -10,22 +15,36 @@ type Props = {
 
 export const PostPreview = (props: Props) => {
     const { index, post } = props
-    const { createdAt, group, id, reactions, shortDescription, stats, title, user, previewImage } =
-        post
+    const { createdAt, id, reactions, shortDescription, title, user, previewImage } = post
 
     return (
-        <div className='py-2'>
-            <Container>
-                <Text as='h3'>{title}</Text>
-                <Text as='p'>{shortDescription}</Text>
-                {/* {previewImage && (
-                    <Image
-                        src={previewImage}
-                        alt='preview'
-                        width={200}
-                        height={200}
+        <div className={cn('pb-2 md:pb-6')}>
+            <Container className={cn({ ['rounded-tl-none rounded-tr-none']: index === 0 })}>
+                <div className='mb-2 flex'>
+                    <UserInfo
+                        createdAt={createdAt}
+                        user={user}
                     />
-                )} */}
+                </div>
+                <div className='relative'>
+                    <Text
+                        as='h3'
+                        className='line-clamp-3'>
+                        {title}
+                    </Text>
+                    <Text
+                        as='p'
+                        className='line-clamp-6'>
+                        {shortDescription}
+                    </Text>
+                    <PostImage src={previewImage} />
+
+                    <Link
+                        className='absolute inset-0'
+                        href={PATH.POST + '/' + id}
+                    />
+                </div>
+                <Reactions reactions={{ toPost: reactions, withUser: user.reactions }} />
             </Container>
         </div>
     )

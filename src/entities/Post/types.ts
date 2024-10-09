@@ -1,12 +1,10 @@
 export type TSortPostBy = 'popular' | 'date' | 'self'
-export type TSortPostByPopular = 'today' | '24h' | 'week' | 'month' | 'year' | 'all'
-export type TSortPostByDate = 'new' | '5' | '10'
-export type TSortPostBySelf = 'popular' | 'new'
+type TSortPostByPopular = 'today' | '24h' | 'week' | 'month' | 'year' | 'all'
+type TSortPostByDate = 'new' | '5' | '10'
+type TSortPostBySelf = 'popular' | 'new'
 
 interface TPostFilterBase<T extends TSortPostBy> {
-    page?: number
-    limit?: number
-    sortBy: T
+    filterOption: T
 }
 
 interface TPopularPostFilterOptions extends TPostFilterBase<'popular'> {
@@ -44,8 +42,8 @@ const sortPostByPopularVariants: { label: string; value: TSortPostByPopular }[] 
 
 const sortPostByDateVariants: { label: string; value: TSortPostByDate }[] = [
     { label: 'Новое', value: 'new' },
-    { label: 'от 5+ часов', value: '5' },
-    { label: 'от 10+ часов', value: '10' }
+    { label: '+5 часов', value: '5' },
+    { label: '+10 часов', value: '10' }
 ]
 
 const sortPostBySelfVariants: { label: string; value: TSortPostBySelf }[] = [
@@ -53,17 +51,19 @@ const sortPostBySelfVariants: { label: string; value: TSortPostBySelf }[] = [
     { label: 'По популярности', value: 'popular' }
 ]
 
-export const sortPostOptions: Record<
-    TSortPostBy,
-    typeof sortPostBySelfVariants | typeof sortPostByDateVariants | typeof sortPostByPopularVariants
-> = {
+type TSortPostByValues =
+    | typeof sortPostBySelfVariants
+    | typeof sortPostByDateVariants
+    | typeof sortPostByPopularVariants
+
+export const sortPostOptions: Record<TSortPostBy, TSortPostByValues> = {
     date: sortPostByDateVariants,
     popular: sortPostByPopularVariants,
     self: sortPostBySelfVariants
 }
 
 export type TGroup = { id: string; name: string; uri: string }
-export type TReactions = 'like' | 'dislike' | 'flame' | 'love' | 'poop'
+export type TReactions = 'flame' | 'love'
 export type TReactionsData = { type: TReactions; count: number }
 export type TPostPreviewStats = {
     comments: number
