@@ -21,7 +21,7 @@ const sidebarItems: SidebarItem[] = [
     { label: 'Главная', path: '/', Icon: IconHouse },
     { label: 'Пользователь', path: '/user', Icon: IconUser }
 ]
-const initialSidebarWidth = 256
+const initialSidebarWidth = 200
 
 export const Sidebar = () => {
     const sidebarIsOpen = useAppSelector(uiSlice.selectors.sidebarIsOpen)
@@ -88,7 +88,7 @@ export const Sidebar = () => {
                 <div
                     className={cn(
                         'h-full w-full overflow-hidden sm:block',
-                        sidebarIsOpen ? 'border-r' : 'border-r-0'
+                        sidebarIsOpen ? 'md:border-r' : 'border-r-0'
                     )}>
                     <div
                         ref={sidebarRef}
@@ -103,7 +103,7 @@ export const Sidebar = () => {
                         )}>
                         <NavigationMenu
                             className={cn(
-                                'flex max-w-full flex-col items-start justify-start gap-1 px-2 py-4'
+                                'flex max-w-full flex-col items-start justify-start gap-1 px-2 py-2 md:py-4'
                             )}>
                             {sidebarItems.map(({ Icon, label, path }) => (
                                 <NavLink

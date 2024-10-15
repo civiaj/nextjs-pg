@@ -20,22 +20,22 @@ const reactionIconsFill: Record<TReactions, string> = {
 }
 
 type Props = {
-    reactions: { toPost: TReactionsData[]; withUser: TReactions[] }
+    reactions: { data: TReactionsData[]; byUser: TReactions[] }
 }
 
 export const Reactions = ({ reactions }: Props) => {
-    const { toPost, withUser } = reactions
+    const { data, byUser } = reactions
     const unusedReactions = useMemo(() => {
-        return toPost.filter((reaction) => reaction.count === 0).map((reaction) => reaction.type)
-    }, [toPost])
+        return data.filter((reaction) => reaction.count === 0).map((reaction) => reaction.type)
+    }, [data])
 
     return (
         <div className='mt-4 flex flex-wrap gap-1'>
-            {toPost.map(({ count, type }) => {
+            {data.map(({ count, type }) => {
                 const isUnused = unusedReactions.includes(type)
                 if (isUnused) return
                 const Icon = reactionIcons[type] as React.FC<React.SVGProps<SVGSVGElement>>
-                const userReacted = withUser.includes(type)
+                const userReacted = byUser.includes(type)
 
                 const fill = userReacted ? reactionIconsFill[type] : 'none'
                 const color = userReacted ? reactionIconsFill[type] : 'currentColor'

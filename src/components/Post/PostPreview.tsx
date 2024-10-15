@@ -18,7 +18,7 @@ export const PostPreview = (props: Props) => {
     const { createdAt, id, reactions, shortDescription, title, user, previewImage } = post
 
     return (
-        <div className={cn('pb-2 md:pb-6')}>
+        <div className={cn('pb-2 md:pb-4')}>
             <Container className={cn({ ['rounded-tl-none rounded-tr-none']: index === 0 })}>
                 <div className='mb-2 flex'>
                     <UserInfo
@@ -44,7 +44,7 @@ export const PostPreview = (props: Props) => {
                         href={PATH.POST + '/' + id}
                     />
                 </div>
-                <Reactions reactions={{ toPost: reactions, withUser: user.reactions }} />
+                <Reactions reactions={{ data: reactions, byUser: user.reactions }} />
             </Container>
         </div>
     )

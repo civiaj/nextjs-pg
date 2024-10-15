@@ -1,12 +1,14 @@
-'use client'
+import { PostDetails } from '@/components/Post/PostDetails'
+import { getPost } from '@/entities/Post/api'
 
-import { useAppSelector } from '@/lib/store/hooks'
+const Page = async ({ params }: { params: { id: string } }) => {
+    const post = await getPost(params.id)
 
-const Page = ({ params }: { params: { id: string } }) => {
-    const sidebarIsOpen = useAppSelector((state) => state.ui.sidebarIsOpen)
-    const title = sidebarIsOpen ? 'Деактивировать' : 'Активировать'
-    console.log(params)
-    return <div>{title}</div>
+    return (
+        <>
+            <PostDetails post={post} />
+        </>
+    )
 }
 
 export default Page

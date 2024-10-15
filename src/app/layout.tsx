@@ -31,7 +31,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                         <Navigation />
                         <div className='mx-auto grid w-full max-w-screen-xl flex-1 grid-cols-1 sm:grid-cols-[auto_1fr]'>
                             <Sidebar />
-                            <div className='mx-auto w-full max-w-3xl px-2 py-2'>{children}</div>
+                            <div className='mx-auto w-full max-w-3xl md:px-2 md:pt-4'>
+                                {children}
+                            </div>
                         </div>
                     </div>
                 </Providers>

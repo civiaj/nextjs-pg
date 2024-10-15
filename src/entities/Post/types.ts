@@ -88,7 +88,7 @@ export type TPostPreview = {
     group: TGroup
 }
 
-export type TPostContentType =
+export type TPostDetailsContent =
     | 'text'
     | 'header'
     | 'image'
@@ -100,56 +100,59 @@ export type TPostContentType =
     | 'code'
 
 export type TPostContentBlockMap = {
-    text: TTextDataContent
-    header: THeaderDataContent
-    image: TImageDataContent
-    video: TVideoDataContent
-    link: TLinkDataContent
-    quote: TQuoteDataContent
-    list: TListDataContent
-    separator: undefined
-    code: TCodeDataContent
+    text: TPostDetailsText
+    header: TPostDetailsHeader
+    image: TPostDetailsImage
+    video: TPostDetailsVideo
+    link: TPostDetailsLink
+    quote: TPostDetailsQuote
+    list: TPostDetailsList
+    code: TPostDetailsCode
+    separator: TPostDetailsSeparator
 }
 
-export type TPostContentBlock<T extends TPostContentType = TPostContentType> = {
+export type TPostContentBlock<T extends TPostDetailsContent = TPostDetailsContent> = {
     type: T
     data: TPostContentBlockMap[T]
 }
 
-export type TTextDataContent = {
+export type TPostDetailsText = {
     text: string
 }
 
-export type THeaderDataContent = {
+export type TPostDetailsHeader = {
     text: string
 }
 
-export type TImageDataContent = {
+export type TPostDetailsImage = {
     type: 'slider' | 'regular'
-    images: { url: string; description: string; id: number }[]
+    images: { url: string; description: string }[]
 }
 
-export type TVideoDataContent = {
-    videos: { url: string; description: string; id: number }[]
+export type TPostDetailsVideo = {
+    videos: { url: string; description: string }[]
 }
 
-export type TLinkDataContent = {
+export type TPostDetailsLink = {
     url: string
 }
 
-export type TQuoteDataContent = {
+export type TPostDetailsQuote = {
     text: string
     signature?: string
 }
 
-export type TCodeDataContent = {
+export type TPostDetailsCode = {
     text: string
 }
 
+export type TPostDetailsList = {
+    title?: string
+    list: { text: string }[]
+}
+
+export type TPostDetailsSeparator = undefined
+
 export interface TPostDetails extends TPostPreview {
     content: TPostContentBlock[]
-}
-export type TListDataContent = {
-    title?: string
-    list: { text: string; id: number }[]
 }

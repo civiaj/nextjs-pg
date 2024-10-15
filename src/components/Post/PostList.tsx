@@ -1,9 +1,11 @@
 'use client'
 
 import { useState, useCallback, useEffect } from 'react'
+import { Container } from '@/components/box/Container'
 import { PostFilter } from '@/components/Post/PostFilter'
 import { PostPreview } from '@/components/Post/PostPreview'
 import { Skeleton } from '@/components/Skeleton'
+import { PostListLoading } from '@/components/ui/loading-indicator'
 import VirtualList from '@/components/VirtualList'
 import { getPosts, test } from '@/entities/Post/api'
 import { TPostPreview } from '@/entities/Post/types'
@@ -74,9 +76,11 @@ export const PostList = () => {
                 renderFunction={renderFunction}
             />
 
-            <div
+            <Container
                 ref={observerRef}
-                className='h-10 w-full bg-black'></div>
+                className='mb-4'>
+                <PostListLoading />
+            </Container>
         </>
     )
 }
