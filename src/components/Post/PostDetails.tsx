@@ -11,18 +11,21 @@ import {
     CarouselPrevious,
     CarouselNext
 } from '@/components/ui/carousel'
+import { cn } from '@/lib/utils'
 import {
     TPostContentBlock,
     TPostContentBlockMap,
     TPostDetails,
     TPostDetailsContent
-} from '@/entities/Post/types'
-import { cn } from '@/lib/utils'
+} from '@/types/post.types'
 
 type PostDetailsProps = {
     post: TPostDetails
 }
-type PostDetailsComponentData<T extends TPostDetailsContent> = { data: TPostContentBlockMap[T] }
+type PostDetailsComponentData<T extends TPostDetailsContent> = {
+    data: TPostContentBlockMap[T]
+    className?: string
+}
 type PostDetailsComponent = React.FC<PostDetailsProps> & {
     Text: React.FC<PostDetailsComponentData<'text'>>
     Header: React.FC<PostDetailsComponentData<'header'>>
@@ -39,7 +42,7 @@ export const PostDetails = (({ post }) => {
     const { content, createdAt, reactions, user } = post
 
     return (
-        <Container>
+        <Container withoutAnimation>
             <div className='mb-4 flex'>
                 <UserInfo
                     createdAt={createdAt}

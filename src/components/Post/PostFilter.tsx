@@ -8,9 +8,9 @@ import {
     DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { sortPostByVariants, sortPostOptions } from '@/entities/Post/types'
 import { uiSlice } from '@/lib/store/features/ui/uiSlice'
 import { useAppDispatch, useAppSelector } from '@/lib/store/hooks'
+import { sortPostByVariants, sortPostOptions } from '@/types/post.types'
 
 export const PostFilter = () => {
     const { filterOption, sortOption } = useAppSelector(uiSlice.selectors.getPostFilter)

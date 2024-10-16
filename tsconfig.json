@@ -21,6 +21,14 @@
             "@/*": ["./src/*"]
         }
     },
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+    "include": [
+        "next-env.d.ts",
+        "**/*.ts",
+        "**/*.tsx",
+        ".next/types/**/*.ts",
+        "src/db/db.config.js",
+        "database/migrations/20241016135055-create-users-table.js",
+        "database/config.js"
+    ],
     "exclude": ["node_modules"]
 }

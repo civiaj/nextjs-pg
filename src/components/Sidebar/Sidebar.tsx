@@ -9,7 +9,7 @@ import { uiSlice } from '@/lib/store/features/ui/uiSlice'
 import { useAppDispatch, useAppSelector } from '@/lib/store/hooks'
 import { cn } from '@/lib/utils'
 import { IconHouse, IconUser } from '@/shared/icons'
-import { TPath } from '@/shared/types'
+import { TPath } from '@/types/common.types'
 
 type SidebarItem = {
     path: TPath

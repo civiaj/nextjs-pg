@@ -1,4 +1,4 @@
-import { TimeStamp } from '@/shared/types'
+import { TimeStamp } from '@/types/common.types'
 
 export type TUserRole = 'admin' | 'user'
 

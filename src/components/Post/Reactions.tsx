@@ -7,8 +7,8 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
-import { TReactions, TReactionsData } from '@/entities/Post/types'
 import { cn } from '@/lib/utils'
+import { TReactions, TReactionsData } from '@/types/post.types'
 
 const reactionIcons: Record<TReactions, ComponentType> = {
     love: Heart,

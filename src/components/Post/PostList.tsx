@@ -8,8 +8,8 @@ import { Skeleton } from '@/components/Skeleton'
 import { PostListLoading } from '@/components/ui/loading-indicator'
 import VirtualList from '@/components/VirtualList'
 import { getPosts, test } from '@/entities/Post/api'
-import { TPostPreview } from '@/entities/Post/types'
 import { useIntersectionObserver } from '@/lib/hooks'
+import { TPostPreview } from '@/types/post.types'
 
 export const PostList = () => {
     const [isLoading, setIsLoading] = useState(false)

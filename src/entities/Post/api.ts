@@ -1,4 +1,5 @@
-import { TPostDetails, TPostPreview } from '@/entities/Post/types'
+import { wait } from '@/lib/utils'
+import { TPostDetails, TPostPreview } from '@/types/post.types'
 
 const createdAt = new Date().toISOString()
 export const test: TPostPreview[] = Array.from({ length: 10000 }, (_, i) => ({
@@ -34,8 +35,6 @@ export const test: TPostPreview[] = Array.from({ length: 10000 }, (_, i) => ({
     }
 }))
 export const postsPerPage = 100
-
-const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 export const getPosts = async (page: number) => {
     await wait(1000)

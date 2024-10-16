@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { TPostFilterOptions } from '@/entities/Post/types'
+import { TPostFilterOptions } from '@/types/post.types'
 
 type UiSliceInitialState = {
     sidebarIsOpen: boolean

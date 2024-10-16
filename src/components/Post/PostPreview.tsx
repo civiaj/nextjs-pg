@@ -4,9 +4,9 @@ import { PostImage } from '@/components/Post/PostImage'
 import { Reactions } from '@/components/Post/Reactions'
 import { UserInfo } from '@/components/Post/UserInfo'
 import { Text } from '@/components/typography/Text'
-import { TPostPreview } from '@/entities/Post/types'
 import { cn } from '@/lib/utils'
 import { PATH } from '@/shared/const'
+import { TPostPreview } from '@/types/post.types'
 
 type Props = {
     index: number

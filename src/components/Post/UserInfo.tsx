@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { TUser } from '@/entities/User/types'
 import { PATH } from '@/shared/const'
-import { TimeStamp } from '@/shared/types'
+import { TimeStamp } from '@/types/common.types'
+import { TUser } from '@/types/user.types'
 
 type Props = { createdAt: TimeStamp['createdAt']; user: Pick<TUser, 'avatar' | 'name' | 'id'> }
 
