@@ -11,14 +11,6 @@ const nextConfig = {
                 hostname: 'leonardo.osnova.io'
             }
         ]
-    },
-    webpack: (config) => {
-        config.ignoreWarnings = [
-            {
-                module: /sequelize/
-            }
-        ]
-        return config
     }
 }
 

@@ -1,6 +1,6 @@
 import { TimeStamp } from '@/types/common.types'
 
-export type TUserRole = 'admin' | 'user'
+export type TUserRole = 'ADMIN' | 'USER'
 
 export interface TUser extends TimeStamp {
     id: string

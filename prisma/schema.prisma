@@ -1,0 +1,75 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String     @id @default(cuid())
+  name      String
+  email     String     @unique
+  password  String
+  avatar    String?
+  role      UserRole   @default(USER)
+  posts     Post[]
+  reactions Reaction[]
+  comments  Comment[]
+}
+
+model Reaction {
+  id        String    @id @default(cuid())
+  type      Reactions
+  userId    String
+  postId    String?
+  commentId String?
+  user      User      @relation(fields: [userId], references: [id])
+  post      Post?     @relation(fields: [postId], references: [id])
+  comment   Comment?  @relation(fields: [commentId], references: [id])
+
+  @@unique([userId, postId])
+  @@unique([userId, commentId])
+}
+
+model Post {
+  id               String     @id @default(cuid())
+  title            String
+  slug             String     @unique
+  shortDescription String
+  previewImage     String?
+  createdAt        DateTime   @default(now())
+  userId           String
+  user             User       @relation(fields: [userId], references: [id])
+  reactions        Reaction[]
+  content          Content[]
+  Comment          Comment[]
+}
+
+model Content {
+  id     String @id @default(cuid())
+  data   Json
+  postId String
+  post   Post   @relation(fields: [postId], references: [id])
+}
+
+model Comment {
+  id        String     @id @default(cuid())
+  text      String
+  userId    String
+  user      User       @relation(fields: [userId], references: [id])
+  postId    String
+  post      Post       @relation(fields: [postId], references: [id])
+  reactions Reaction[]
+}
+
+enum UserRole {
+  ADMIN
+  USER
+}
+
+enum Reactions {
+  flame
+  love
+}
